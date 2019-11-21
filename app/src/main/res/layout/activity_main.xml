@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.MainActivity">
+
+    <data>
+
+        <variable
+            name="mainViewmodel"
+            type="com.fame.viewmodel.MainViewModel" />
+
+        <variable
+            name="todoListAdapter"
+            type="com.fame.adapters.TodoListAdapter" />
+
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/edtTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:textSize="16sp"
+                android:hint="@string/title"
+                android:inputType="textPersonName"
+                android:text="@={mainViewmodel.tiltle}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:textSize="16sp"
+                android:hint="@string/description"
+                android:inputType="textPersonName"
+                android:text="@={mainViewmodel.description}"
+                app:layout_constraintEnd_toEndOf="@+id/edtTitle"
+                app:layout_constraintStart_toStartOf="@+id/edtTitle"
+                app:layout_constraintTop_toBottomOf="@+id/edtTitle" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableRight="@drawable/icon_select"
+                android:inputType="textPersonName"
+                android:onClick="@{mainViewmodel::clickOnDate}"
+                android:paddingLeft="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:paddingTop="10dp"
+                android:textColor="@color/colorWhite"
+                android:paddingBottom="10dp"
+                android:text="@={mainViewmodel.date}"
+                app:layout_constraintEnd_toEndOf="@+id/edtDescription"
+                app:layout_constraintStart_toStartOf="@+id/edtDescription"
+                app:layout_constraintTop_toBottomOf="@+id/edtDescription" />
+
+            <Button
+                android:id="@+id/btnSaveUpdate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="@{mainViewmodel::saveOrUpdate}"
+                android:text="Save"
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="@+id/txtDate"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/txtDate"
+                app:layout_constraintTop_toBottomOf="@+id/txtTime" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="360dp"
+                android:layout_height="419dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginBottom="16dp"
+                android:adapter="@{todoListAdapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btnSaveUpdate"
+                app:layout_constraintHorizontal_bias="0.473"
+                app:layout_constraintStart_toStartOf="@+id/btnSaveUpdate"
+                app:layout_constraintTop_toBottomOf="@+id/btnSaveUpdate"
+                tools:itemCount="5"
+                tools:listitem="@layout/todo_list_item" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableRight="@drawable/icon_select"
+                android:onClick="@{mainViewmodel::clickOnTime}"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
+                android:text="@={mainViewmodel.time}"
+                app:layout_constraintEnd_toEndOf="@+id/txtDate"
+                app:layout_constraintStart_toStartOf="@+id/txtDate"
+                app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
